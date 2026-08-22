@@ -4,7 +4,8 @@
 
 ## Aha moment
 
-_The exact moment FinWise becomes "my money, finally clear."_
+Within 90 seconds of signing up, the user sees their own money — real balances, real invoices, real categorised transactions — turned into one number and one insight they did not have before, without typing a single figure in by hand.
+Everything in the flow is subordinate to that: no screen exists unless it makes the payoff land faster or makes it land harder
 
 _____
 
