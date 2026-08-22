@@ -1,0 +1,23 @@
+{
+  // Linting rules for the FinWise strategy Markdown deliverables.
+  // Structural rules stay on; a few stylistic rules are relaxed to match the
+  // intentional template/authoring style used across the modules.
+  "config": {
+    "default": true,
+    // Prose deliverables are not wrapped at a fixed width.
+    "MD013": false,
+    // Sidebar/preview files use inline HTML comments.
+    "MD033": false,
+    // Template files intentionally reuse the same sub-headings across modules.
+    "MD024": { "siblings_only": true },
+    // The README byline uses emphasis intentionally, not as a heading.
+    "MD036": false,
+    // The repo-structure block is an ASCII tree without a language.
+    "MD040": false,
+    // docsify partials (e.g. _sidebar.md) legitimately start with a list.
+    "MD041": false,
+    // The dashboard table uses a compact pipe style by design.
+    "MD060": false
+  },
+  "ignores": ["node_modules", "**/node_modules"]
+}

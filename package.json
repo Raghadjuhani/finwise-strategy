@@ -1,0 +1,15 @@
+{
+  "name": "finwise-strategy",
+  "version": "1.0.0",
+  "private": true,
+  "description": "FinWise product-led growth strategy — Markdown deliverables authored across six certification modules.",
+  "scripts": {
+    "lint": "markdownlint-cli2 \"**/*.md\"",
+    "lint:fix": "markdownlint-cli2 --fix \"**/*.md\"",
+    "serve": "docsify serve . --port 3000"
+  },
+  "devDependencies": {
+    "docsify-cli": "5.0.0",
+    "markdownlint-cli2": "0.23.2"
+  }
+}
