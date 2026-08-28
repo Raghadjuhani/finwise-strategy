@@ -11,7 +11,7 @@ _____
 
 ## Onboarding prototype
 
-[_Screenshots or a shareable link to the flow that gets users to the Aha faster._](https://fin-wias-v1.vercel.app)
+https://fin-wias-v1-krpaxu8dx-ralfaydi.vercel.app
 
 _____
 
