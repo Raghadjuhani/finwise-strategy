@@ -36,9 +36,5 @@ The user type is the only question the flow asks, and it drives three things:
 | Small business owner | Cash flow — payroll vs. receivables | Connect bank (Bank of America pre-selected) | Invite your bookkeeper |
 | Accountant managing clients | Bookkeeping — closing books | **Import client ledgers** — accountants arrive with exports, not with their clients' bank credentials | Invite your client |
 
-It also swaps the sample workspace (`Nadia Osei Studio`, `Riverbend Coffee Co.`,
-`Hartwell & Co. Advisory`), every number on the dashboard, the import steps, and the
-collaborator FinWise "detects" in the imported data.
-
 
 _____
