@@ -11,6 +11,12 @@ _____
 
 ## Onboarding prototype
 
+https://fin-wias-v1-krpaxu8dx-ralfaydi.vercel.app
+
+_____
+
+## Why this activates
+
 ## The flow
 
 | # | Screen | Job | The one action |
@@ -38,58 +44,5 @@ It also swaps the sample workspace (`Nadia Osei Studio`, `Riverbend Coffee Co.`,
 `Hartwell & Co. Advisory`), every number on the dashboard, the import steps, and the
 collaborator FinWise "detects" in the imported data.
 
-## Design decisions worth calling out
-
-- **One thing per screen.** Screens 2, 3 and 4 ask exactly one question. Screen 2 advances the
-  moment you tap, because the tap _is_ the answer.
-- **Pre-fill everything that is not the answer.** The recommended feature is pre-selected, the
-  likely bank is pre-selected, the sample file is pre-attached, and the invite email is
-  pre-filled from a payment FinWise spotted in the transaction history.
-- **The payoff is a number plus a judgement.** Every dashboard pairs the hero figure with one
-  written insight ("You dip under $10k in week 6 — two overdue invoices are the reason"),
-  because a chart alone is not an Aha moment.
-- **The collaboration ask comes after the payoff, never before.** Screen 5 leads with value and
-  ends with a single CTA; competing actions are deliberately muted.
-- **Reverse trial framing throughout.** "Pro trial · 14 days" is visible on every screen, with
-  no credit-card gate anywhere in the flow.
-
-## Clicking through it
-
-- The flow is fully navigable: the in-screen back arrows and CTAs walk the happy path.
-- The floating **Prototype** bar (desktop) jumps to any screen, restarts the flow, and responds
-  to the ← / → arrow keys.
-- On the dashboard, the feature tabs switch between the cash-flow, invoicing and bookkeeping
-  views so you can see how each user type's data reads in all three.
-- Everything is responsive down to a 375px-wide phone.
-
-## Sample data
-
-All figures are hand-built fixtures in `src/data/personas.ts` and are internally consistent:
-account balances sum to the headline cash figure, invoice line items sum to the outstanding
-and overdue totals, and each written insight refers to numbers that actually appear on the
-screen. No API, no backend, no persistence.
-
-## Stack
-
-React 19 + TypeScript, Vite, Tailwind CSS v4. No component library, no charting library — the
-forecast bars and breakdown meters are plain CSS so the whole thing stays under 80 kB gzipped.
-
-```
-src/
-  App.tsx              flow state machine
-  flow.ts              screen order shared with the prototype bar
-  data/personas.ts     the three personas and every number they see
-  screens/             one file per screen
-  components/          shell, options, dashboard panels, invite modal
-```
-
-
-https://fin-wias-v1-krpaxu8dx-ralfaydi.vercel.app
-
-_____
-
-## Why this activates
-
-_The activation logic: what changes, and why it converts trial users._
 
 _____
