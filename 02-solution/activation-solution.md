@@ -17,8 +17,6 @@ _____
 
 ## Why this activates
 
-## The flow
-
 | # | Screen | Job | The one action |
 |---|--------|-----|----------------|
 | 1 | Sign up | Get them in with zero friction | Email + password (or one-tap Google) |
@@ -27,8 +25,6 @@ _____
 | 4 | Data source | Get real data in by the fastest path available | Connect the pre-selected bank, or import the pre-attached file |
 | 5 | Results (Aha) | Pay it off with real numbers, then convert trust into collaboration | View dashboard → **Invite your accountant / bookkeeper / client** |
 
-A short import screen sits between 4 and 5. It is a transition, not a step: it shows the work
-being done (`Categorising 2,417 transactions`) so the numbers on screen 5 feel earned.
 
 ## How screen 2 personalizes the rest
 
