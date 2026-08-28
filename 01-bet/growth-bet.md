@@ -24,6 +24,6 @@ _____
 ## Growth loop
 
 **1. Invite-Driven Reverse-Trial Loop** — Trigger (personalized sign-up, instant full access) → Activate (import data + get a first result matched to user type) → Realize value (clear, real insight the user recognizes as their own) → Expand (invite accountant/bookkeeper/co-founder) → Outcome (collaborator opens their own account, often on behalf of multiple clients) → restarts loop.
-[`https://claude.ai/public/artifacts/ee860011-644c-40e0-a056-aaa129282ccb`]
+https://claude.ai/public/artifacts/ee860011-644c-40e0-a056-aaa129282ccb 
 
 _____
