@@ -17,4 +17,4 @@ _____
 ## Guardrail + read date
 
 - **Guardrail:** One-year retention rate must not decrease. We’re fixing a conversion problem (2%) without making the retention problem (40%) worse — if the personalized paywall converts more users who then churn faster, that’s not a win. Guardrail threshold: retention must not drop by more than 3 percentage points from the 40% baseline.
-- **Read date:** _set before launch, no peeking. Given trial length (~14 days) plus time to observe the habit loop’s first cycle, read the primary metric at 4 weeks post-launch; read the retention guardrail at 90 days post-launch, since retention can’t be honestly assessed on a shorter window._
+- **Read date:** set before launch, no peeking. Given trial length (~14 days) plus time to observe the habit loop’s first cycle, read the primary metric at 4 weeks post-launch; read the retention guardrail at 90 days post-launch, since retention can’t be honestly assessed on a shorter window.
