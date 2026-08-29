@@ -1,0 +1,17 @@
+{
+  "name": "FinWise Strategy Docs",
+  "install": "npm ci",
+  "terminals": [
+    {
+      "name": "docs-preview",
+      "command": "npm run serve",
+      "description": "Live docsify preview of the FinWise strategy docs at http://localhost:3000 (run `npm run lint` to lint the Markdown)."
+    }
+  ],
+  "ports": [
+    {
+      "name": "Docs preview",
+      "port": 3000
+    }
+  ]
+}
