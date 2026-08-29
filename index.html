@@ -1,0 +1,600 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FinWise. Your Next Product — Product Experimentation Pitch</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Lato:wght@400;700&family=Poppins:wght@700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #07162C;
+      --fg: #e8eefb;
+      --muted: #ffffff;
+      --blue: #60a5fa;
+      --sky: #38bdf8;
+      --teal: #34d399;
+      --amber: #fbbf24;
+      --rose: #fb7185;
+      --violet: #a78bfa;
+      --mint: #6ee7b7;
+      --card: rgba(255,255,255,0.03);
+      --border: rgba(255,255,255,0.08);
+      --shadow: 0 18px 48px rgba(0,0,0,0.28);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    html { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: Lato, "Segoe UI", sans-serif;
+      font-weight: 400;
+      line-height: 1.45;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(900px 480px at 12% -10%, rgba(96,165,250,0.16), transparent 55%),
+        radial-gradient(720px 420px at 100% 8%, rgba(167,139,250,0.10), transparent 50%),
+        linear-gradient(180deg, rgba(255,255,255,0.02), transparent 28%);
+      z-index: 0;
+    }
+
+    h1, h2, h3 { font-family: Poppins, sans-serif; letter-spacing: -0.03em; line-height: 1.08; }
+    a { color: inherit; }
+
+    .progress {
+      position: fixed;
+      top: 0; left: 0;
+      height: 3px;
+      width: 0;
+      z-index: 50;
+      background: linear-gradient(90deg, var(--blue), var(--sky), var(--mint));
+      box-shadow: 0 0 16px rgba(56,189,248,0.55);
+    }
+
+    .dots {
+      position: fixed;
+      right: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 40;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .dots button {
+      width: 10px; height: 10px;
+      border-radius: 99px;
+      border: 1px solid rgba(255,255,255,0.28);
+      background: transparent;
+      padding: 0;
+      cursor: pointer;
+      transition: transform .2s ease, background .2s ease, width .2s ease;
+    }
+    .dots button.active {
+      background: var(--sky);
+      border-color: var(--sky);
+      transform: scale(1.25);
+      box-shadow: 0 0 12px rgba(56,189,248,0.55);
+    }
+    .dots button:hover { background: rgba(255,255,255,0.35); }
+
+    section {
+      min-height: 100vh;
+      scroll-snap-align: start;
+      display: grid;
+      place-items: center;
+      position: relative;
+      z-index: 1;
+      padding: clamp(28px, 4.2vh, 48px) clamp(28px, 5vw, 80px) clamp(28px, 4vh, 44px);
+    }
+
+    .slide {
+      width: min(1180px, 100%);
+      max-height: calc(100vh - clamp(56px, 8vh, 92px));
+      overflow: auto;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.015)),
+        rgba(7, 22, 44, 0.55);
+      box-shadow: var(--shadow);
+      padding: clamp(22px, 3.4vh, 36px) clamp(22px, 3.2vw, 40px);
+      position: relative;
+      overflow: auto;
+    }
+    .slide::before {
+      content: "";
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 4px;
+      background: var(--accent, var(--blue));
+    }
+    .slide.accent-top::after {
+      content: "";
+      position: absolute;
+      left: 0; right: 0; top: 0;
+      height: 4px;
+      background: var(--accent, var(--blue));
+    }
+
+    .eyebrow {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent, var(--blue));
+      margin-bottom: 10px;
+    }
+    .lede { color: rgba(232,238,251,0.82); max-width: 68ch; }
+    .muted { color: rgba(255,255,255,0.72); }
+    .tiny {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .grid-2 { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 20px; align-items: stretch; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.055), rgba(255,255,255,0.02));
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px 18px 16px;
+      box-shadow: 0 10px 28px rgba(0,0,0,0.18);
+    }
+    .card.keyed { border-left: 4px solid var(--key, var(--blue)); }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 999px;
+      padding: 9px 16px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(96,165,250,0.12);
+      color: var(--fg);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 13px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+      transition: transform .15s ease, background .15s ease;
+      white-space: nowrap;
+    }
+    .pill:hover { transform: translateY(-1px); background: rgba(96,165,250,0.2); }
+    .pill .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--sky); box-shadow: 0 0 8px var(--sky); }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.05);
+    }
+
+    .browser {
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      background: #0a1c36;
+      box-shadow: var(--shadow);
+    }
+    .browser-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      background: rgba(255,255,255,0.04);
+      border-bottom: 1px solid var(--border);
+    }
+    .traffic { display: flex; gap: 6px; }
+    .traffic i { width: 8px; height: 8px; border-radius: 50%; display: block; }
+    .traffic i:nth-child(1) { background: #fb7185; }
+    .traffic i:nth-child(2) { background: #fbbf24; }
+    .traffic i:nth-child(3) { background: #34d399; }
+    .addr {
+      flex: 1;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 10px;
+      color: rgba(255,255,255,0.7);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .browser-body { padding: 16px; }
+
+    .loop {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .node {
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.04);
+      padding: 10px;
+    }
+    .node strong {
+      display: block;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .node p { font-size: 12px; color: rgba(255,255,255,0.78); }
+    .loop-note {
+      grid-column: 1 / -1;
+      text-align: center;
+      font-size: 12px;
+      color: rgba(255,255,255,0.7);
+      padding-top: 4px;
+    }
+
+    .stat {
+      font-family: "IBM Plex Mono", monospace;
+      font-weight: 500;
+      font-size: clamp(28px, 4vw, 44px);
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+
+    .cover-title { font-size: clamp(42px, 7vw, 84px); font-weight: 900; }
+    .cover-sub { font-size: clamp(22px, 3vw, 36px); font-weight: 700; color: rgba(232,238,251,0.92); margin: 6px 0 18px; }
+    .pitch {
+      font-size: clamp(16px, 2vw, 22px);
+      max-width: 34ch;
+      color: rgba(232,238,251,0.88);
+    }
+
+    .aha {
+      border-radius: 16px;
+      padding: 20px 22px;
+      border: 1px solid rgba(52,211,153,0.28);
+      background:
+        linear-gradient(135deg, rgba(52,211,153,0.16), rgba(56,189,248,0.06));
+      box-shadow: 0 14px 36px rgba(0,0,0,0.2);
+    }
+
+    .screens { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+    .screen {
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(96,165,250,0.10), rgba(255,255,255,0.03));
+      min-height: 132px;
+      padding: 12px;
+    }
+    .screen b { display: block; font-size: 13px; margin: 6px 0 4px; }
+    .screen p { font-size: 11px; color: rgba(255,255,255,0.72); }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    .flow .step {
+      border-radius: 14px;
+      padding: 14px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.04);
+      min-height: 128px;
+    }
+
+    .brief-row { display: grid; grid-template-columns: 160px 1fr; gap: 14px; align-items: start; }
+    .brief-row + .brief-row { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); }
+
+    .submit {
+      margin-top: 18px;
+      border-radius: 999px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      background: linear-gradient(90deg, rgba(96,165,250,0.18), rgba(167,139,250,0.16));
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    @media (max-width: 980px) {
+      .dots { display: none; }
+      .grid-2, .grid-3, .cols, .screens, .flow, .brief-row, .loop { grid-template-columns: 1fr; }
+      .slide { min-height: auto; }
+      section { padding: 22px 16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="progress" id="progress"></div>
+  <nav class="dots" id="dots" aria-label="Slide navigation"></nav>
+
+  <section id="cover">
+    <div class="slide accent-top" style="--accent:#60a5fa">
+      <p class="eyebrow">Product School · Final Project</p>
+      <h1 class="cover-title">FinWise. Your Next Product</h1>
+      <p class="pitch">_(not filled)_</p>
+      <div style="margin-top:28px; display:flex; flex-wrap:wrap; gap:12px; align-items:center;">
+        <span class="chip">Raghad Aljuahni | Product Experimentation | August 2026</span>
+        <a class="pill" href="https://github.com/Raghadjuhani/finwise-strategy" target="_blank" rel="noreferrer">
+          <span class="dot"></span> https://github.com/Raghadjuhani/finwise-strategy
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="bet">
+    <div class="slide" style="--accent:#38bdf8">
+      <p class="eyebrow" style="color:#38bdf8">Slide 5 · The Bet</p>
+      <h2 style="font-size:clamp(28px,4vw,42px); margin-bottom:18px;">The Bet (Growth Hypothesis)</h2>
+      <div class="grid-2">
+        <div>
+          <div class="card keyed" style="--key:#38bdf8; margin-bottom:14px;">
+            <p class="tiny" style="color:#38bdf8; margin-bottom:8px;">Growth hypothesis</p>
+            <p>If we change sign-up and onboarding to be personalized based on user type and deliver a fast, clear result using the user's own real data, then Trial→Paid conversion will increase, because the Aha moment, a specific, real insight the user can immediately see is! theirs is what proves value, and proven value is what earns a purchase decision.</p>
+          </div>
+          <div class="card keyed" style="--key:#fbbf24;">
+            <p class="tiny" style="color:#fbbf24; margin-bottom:8px;">The bet</p>
+            <p>We're betting on: personalization and speed-to-result, not acquisition volume or price. Specifically — a short quiz at sign-up that identifies user type (e.g., biggest financial question: cash flow, budgeting, or fundraising prep) so the first model shown is the right model for that business, combined with a lean onboarding path that gets from sign-up to that personalized first result as fast as possible, on the user's own real data.</p>
+          </div>
+        </div>
+        <div>
+          <div class="browser">
+            <div class="browser-bar">
+              <div class="traffic"><i></i><i></i><i></i></div>
+              <div class="addr">https://claude.ai/public/artifacts/ee860011-644c-40e0-a056-aaa129282ccb</div>
+            </div>
+            <div class="browser-body">
+              <img src="https://claude.ai/public/artifacts/ee860011-644c-40e0-a056-aaa129282ccb" alt="FinWise growth-loop visualization" style="width:100%; height:220px; object-fit:cover; border-radius:10px; background:rgba(255,255,255,0.03);" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+              <div style="display:none;">
+                <div class="loop">
+                  <div class="node"><strong style="color:#38bdf8">Trigger</strong><p>Personalized sign-up, instant full access</p></div>
+                  <div class="node"><strong style="color:#34d399">Activate</strong><p>Import data + first result matched to user type</p></div>
+                  <div class="node"><strong style="color:#fbbf24">Realize</strong><p>A real insight the user recognizes as their own</p></div>
+                  <div class="node"><strong style="color:#a78bfa">Expand</strong><p>Invite accountant, bookkeeper, or co-founder</p></div>
+                  <div class="node"><strong style="color:#fb7185">Outcome</strong><p>Collaborator opens their own account</p></div>
+                  <div class="node"><strong style="color:#6ee7b7">Restart</strong><p>The invite restarts the reverse-trial loop</p></div>
+                  <p class="loop-note">Invite-Driven Reverse-Trial Loop</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top:12px;">
+            <a class="pill" href="https://claude.ai/public/artifacts/ee860011-644c-40e0-a056-aaa129282ccb" target="_blank" rel="noreferrer"><span class="dot"></span> Open growth-loop visualization</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="solution">
+    <div class="slide" style="--accent:#34d399">
+      <p class="eyebrow" style="color:#34d399">Slide 6 · The Solution</p>
+      <h2 style="font-size:clamp(28px,4vw,42px); margin-bottom:16px;">The Solution (Onboarding)</h2>
+      <div class="aha">
+        <p class="tiny" style="color:#6ee7b7; margin-bottom:8px;">Aha-moment definition</p>
+        <p>Within 90 seconds of signing up, the user sees their own money — real balances, real invoices, real categorised transactions — turned into one number and one insight they did not have before, without typing a single figure in by hand.
+Everything in the flow is subordinate to that: no screen exists unless it makes the payoff land faster or makes it land harder</p>
+      </div>
+      <div class="screens" style="margin-top:16px;">
+        <div class="screen"><span class="tiny" style="color:#60a5fa">01</span><b>Sign up</b><p>Get them in with zero friction</p></div>
+        <div class="screen"><span class="tiny" style="color:#38bdf8">02</span><b>User type</b><p>One signal that personalizes everything</p></div>
+        <div class="screen"><span class="tiny" style="color:#34d399">03</span><b>Feature</b><p>Name the use case that made them sign up</p></div>
+        <div class="screen"><span class="tiny" style="color:#fbbf24">04</span><b>Data source</b><p>Connect bank or import the file</p></div>
+        <div class="screen"><span class="tiny" style="color:#a78bfa">05</span><b>Results</b><p>Pay it off with real numbers</p></div>
+      </div>
+      <div style="margin-top:16px;">
+        <a class="pill" href="https://fin-wias-v1.vercel.app/" target="_blank" rel="noreferrer"><span class="dot"></span> Open onboarding prototype</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="mechanic">
+    <div class="slide" style="--accent:#fbbf24">
+      <p class="eyebrow" style="color:#fbbf24">Slide 7 · The Mechanic</p>
+      <h2 style="font-size:clamp(28px,4vw,42px); margin-bottom:16px;">The Mechanic (Gamification)</h2>
+      <div class="grid-2">
+        <div class="card keyed" style="--key:#fbbf24;">
+          <p class="tiny" style="color:#fbbf24; margin-bottom:8px;">Mechanic + rationale</p>
+          <p>Retention has to be earned before conversion is asked for — a user who's built a habit resolving open items in their own data (a banner or email flagging transactions to categorize before their forecast updates) has already proven the product's value to themselves. That's what makes the paywall, placed at their first personalized model, land as a natural next step rather than an interruption.</p>
+          <p style="margin-top:10px;">This targets our weak point: 40% one-year retention. The loop is concrete: Trigger ("3 transactions need categorizing before your forecast updates") → Action (categorize them) → Reward (forecast shifts, caused by that action) → Investment (invite the accountant, who now gets every future trigger too). Each cycle makes the product harder to leave and more relevant to return to, instead of relying on acquisition to replace churned users.</p>
+          <p style="margin-top:10px;">Action and Investment aren't new mechanics — Action is the same behavior as trial Activation (Import Data % / Modeling %), and Investment is the same as Expand in our growth loop. This tightens the plan we already have, and fixes the earlier sequencing error, where Trigger referenced a past event instead of an open one.</p>
+        </div>
+        <div>
+          <div class="flow">
+            <div class="step"><span class="tiny" style="color:#38bdf8">Trigger</span><p style="margin-top:8px;">3 transactions need categorizing before your forecast updates</p></div>
+            <div class="step"><span class="tiny" style="color:#34d399">Action</span><p style="margin-top:8px;">Categorize them</p></div>
+            <div class="step"><span class="tiny" style="color:#fbbf24">Reward</span><p style="margin-top:8px;">Forecast shifts, caused by that action</p></div>
+            <div class="step"><span class="tiny" style="color:#a78bfa">Investment</span><p style="margin-top:8px;">Invite the accountant, who now gets every future trigger too</p></div>
+          </div>
+          <div style="margin-top:16px;">
+            <a class="pill" href="https://finwiseloop.vercel.app/" target="_blank" rel="noreferrer"><span class="dot"></span> Open habit-loop wireframe</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="signals">
+    <div class="slide" style="--accent:#a78bfa">
+      <p class="eyebrow" style="color:#a78bfa">Slide 8 · The Signals</p>
+      <h2 style="font-size:clamp(28px,4vw,42px); margin-bottom:16px;">The Signals (Metrics)</h2>
+      <div class="cols">
+        <div class="card keyed" style="--key:#60a5fa;">
+          <p class="tiny" style="color:#60a5fa; margin-bottom:8px;">Leading indicators</p>
+          <p>Average Sessions Per User, the metric most correlated with Trial→Paid conversion (+0.58) across the 13 month data, indicating that how often a trial user returns predicts conversion more than how long they stay per session or how much of any single feature they use.</p>
+        </div>
+        <div class="card keyed" style="--key:#fb7185;">
+          <p class="tiny" style="color:#fb7185; margin-bottom:8px;">Lagging indicators</p>
+          <p>Trial to Paid conversion rate, currently 2%, and 1 year retention rate, currently 40%. Both are business outcomes we can't move directly, we earn them by moving Average Sessions Per User consistently over time.</p>
+        </div>
+      </div>
+      <div class="card" style="margin-top:16px; display:grid; grid-template-columns: 180px 1fr; gap:18px; align-items:center;">
+        <div>
+          <div class="stat" style="color:#a78bfa;">+0.58</div>
+          <p class="tiny" style="margin-top:8px; color:#a78bfa;">Correlation</p>
+        </div>
+        <div>
+          <p class="tiny" style="color:#fbbf24; margin-bottom:8px;">Data pattern</p>
+          <p>Sessions Per User shows a Ceiling pattern, climbing through 2024 then flattening at 9 by Sept–Oct, the same months with two of the highest conversion rates (2.08%, 2.04%). That co-movement (+0.58 correlation) is why it's the leading indicator, but the ceiling means conversion gains may need other levers once engagement caps out.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="validation">
+    <div class="slide" style="--accent:#fb7185">
+      <p class="eyebrow" style="color:#fb7185">Slide 9 · The Validation</p>
+      <h2 style="font-size:clamp(28px,4vw,42px); margin-bottom:16px;">The Validation (Experiment)</h2>
+      <div class="card">
+        <div class="brief-row">
+          <div><span class="chip" style="background:rgba(251,113,133,0.12); border-color:rgba(251,113,133,0.35);">A/B test · 50/50</span></div>
+          <p>A/B test (50/50 split), run at the trial-cohort level. This is a single, discrete change to onboarding and the habit loop — not multiple competing variants needing dynamic traffic allocation — so a clean control group is enough to isolate the effect. It also gives an unambiguous causal read before we commit the personalized onboarding + habit loop to all trial users.</p>
+        </div>
+        <div class="brief-row">
+          <div>
+            <p class="tiny" style="color:#60a5fa;">Hypothesis + primary metric</p>
+            <p class="stat" style="font-size:28px; margin-top:8px; color:#60a5fa;">2% → 8%</p>
+          </div>
+          <p>If we replace generic sign-up/onboarding with a personalized flow (user-type quiz + fast result on real data) and add the Trigger→Action→Reward→Investment habit loop (open-item banner/email → categorize → forecast update → invite collaborator), then Trial→Paid conversion rate will increase from the current 2% baseline toward 8%.</p>
+        </div>
+        <div class="brief-row">
+          <div>
+            <p class="tiny" style="color:#fbbf24;">Guardrail + read date</p>
+            <p class="stat" style="font-size:28px; margin-top:8px; color:#fbbf24;">−3 pts</p>
+          </div>
+          <p>One-year retention must not drop more than 3 points from the 40% baseline — a conversion win that trades off retention isn't a real win. Read date: Set before launch. Primary metric at 4 weeks (trial length + one habit-loop cycle); retention guardrail at 90 days, since it can't be honestly read sooner.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="model">
+    <div class="slide" style="--accent:#6ee7b7">
+      <p class="eyebrow" style="color:#6ee7b7">Slide 10 · The Model</p>
+      <h2 style="font-size:clamp(28px,4vw,42px); margin-bottom:16px;">The Model (Pricing)</h2>
+      <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:16px;">
+        <span class="chip" style="background:rgba(110,231,183,0.12); border-color:rgba(110,231,183,0.3);">Value Creation</span>
+        <span class="chip" style="background:rgba(96,165,250,0.12); border-color:rgba(96,165,250,0.3);">Reverse-trial → Subscription</span>
+      </div>
+      <div class="card keyed" style="--key:#6ee7b7; margin-bottom:14px;">
+        <p class="tiny" style="color:#6ee7b7; margin-bottom:8px;">Growth stage + monetization model</p>
+        <p>Value Creation: 2% conversion, 40% retention value isn't proven at scale yet, so pricing has to fix that first, not capture revenue from it.  Model: Reverse-trial → Subscription. Full access up front, converting to recurring paid. Fits value that compounds with data and repeated use. Freemium's premature, it would mask the value problem, not solve it.</p>
+      </div>
+      <div class="card keyed" style="--key:#fbbf24; margin-bottom:14px;">
+        <p class="tiny" style="color:#fbbf24; margin-bottom:8px;">Recommendation + bet</p>
+        <p>Move the paywall from a fixed day-14 calendar cutoff to a value-triggered boundary: it appears the moment a trial user completes their first personalized financial model on real imported data — the point where they’ve actually experienced the product’s core value, reached faster through personalized onboarding (user-type quiz + fast result on real data) and reinforced by the habit loop (Trigger → Action → Reward → Investment) that keeps them returning before that moment arrives.</p>
+        <p style="margin-top:10px;">This is a packaging bet, not a price change — we’re not asking users to pay more, we’re asking them to decide at the right moment instead of an arbitrary one.</p>
+      </div>
+      <div class="card">
+        <p class="tiny" style="color:#60a5fa; margin-bottom:8px;">Supporting signal</p>
+        <p>If this is working, conversions should cluster tightly around the activation event (first completed personalized model) rather than scattering across, or getting lost before, day 14. Concretely:</p>
+        <p style="margin-top:8px;">• Trial→Paid conversion rate moves from 2% toward the 10% target, read at 4 weeks.</p>
+        <p>• Time-to-conversion should compress and concentrate near the activation moment, not spread evenly across the trial window.</p>
+        <p>• One-year retention holds within 3 points of the 40% baseline (guardrail) — confirming the lift comes from better-timed, better-proven value, not from converting users who churn faster</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="story">
+    <div class="slide accent-top" style="--accent:#60a5fa">
+      <p class="eyebrow">Slide 11 · The Story</p>
+      <h2 style="font-size:clamp(28px,4vw,42px); margin-bottom:16px;">The Story (Insights) + Submit</h2>
+      <div class="grid-3">
+        <div class="card keyed" style="--key:#fb7185;">
+          <p class="tiny" style="color:#fb7185; margin-bottom:8px;">Biggest friction</p>
+          <p>I kept reaching for pricing as the fix. The data forced me to see it was an activation problem first, pricing came after.</p>
+        </div>
+        <div class="card keyed" style="--key:#fbbf24;">
+          <p class="tiny" style="color:#fbbf24; margin-bottom:8px;">Key Aha moment</p>
+          <p>Realizing the 2% conversion number was a symptom, not the disease, the funnel diagnosis changed my entire strategy.</p>
+        </div>
+        <div class="card keyed" style="--key:#6ee7b7;">
+          <p class="tiny" style="color:#6ee7b7; margin-bottom:8px;">Course takeaways</p>
+          <p>Experimentation is a system, not a tactic. The read date set up front, and knowing when NOT to change the price, were the lessons that stuck.</p>
+        </div>
+      </div>
+      <div class="submit">
+        <div>
+          <p class="tiny" style="color:#60a5fa;">Submit on the Learning Platform</p>
+          <p style="margin-top:4px;">Use the repo URL as the submission link.</p>
+        </div>
+        <a class="pill" href="https://github.com/Raghadjuhani/finwise-strategy" target="_blank" rel="noreferrer"><span class="dot"></span> https://github.com/Raghadjuhani/finwise-strategy</a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const sections = Array.from(document.querySelectorAll("section"));
+    const dots = document.getElementById("dots");
+    const progress = document.getElementById("progress");
+    let current = 0;
+
+    sections.forEach((section, i) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.setAttribute("aria-label", "Go to " + (section.id || ("slide " + (i + 1))));
+      btn.addEventListener("click", () => goTo(i));
+      dots.appendChild(btn);
+    });
+
+    function goTo(index) {
+      current = Math.max(0, Math.min(sections.length - 1, index));
+      sections[current].scrollIntoView({ behavior: "smooth", block: "start" });
+      syncUI();
+    }
+
+    function syncUI() {
+      Array.from(dots.children).forEach((btn, i) => btn.classList.toggle("active", i === current));
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      progress.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + "%";
+    }
+
+    document.addEventListener("keydown", (e) => {
+      if (["ArrowDown", " ", "Spacebar"].includes(e.key)) {
+        e.preventDefault();
+        goTo(current + 1);
+      } else if (e.key === "ArrowUp") {
+        e.preventDefault();
+        goTo(current - 1);
+      } else if (e.key === "Home") {
+        e.preventDefault();
+        goTo(0);
+      } else if (e.key === "End") {
+        e.preventDefault();
+        goTo(sections.length - 1);
+      }
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          current = sections.indexOf(entry.target);
+          syncUI();
+        }
+      });
+    }, { threshold: 0.55 });
+    sections.forEach((section) => observer.observe(section));
+    window.addEventListener("scroll", syncUI, { passive: true });
+    syncUI();
+  </script>
+</body>
+</html>

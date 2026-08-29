@@ -2,7 +2,9 @@
 
 > _(one-line growth thesis)_
 
-_Your name · Product Experimentation · date_
+**Pitch page:** [Open the HTML pitch](index.html) · [Repo](https://github.com/Raghadjuhani/finwise-strategy)
+
+Raghad Aljuahni · Product Experimentation · August 2026
 
 This repo is my final project for the **Product Experimentation Certification** — a growth strategy for FinWise. One folder per module; this README is **The Story** that ties them together, and the source for the pitch you generate with the **Final Project Deliverables Prompt Generator**.
 
@@ -35,6 +37,7 @@ This repo is my final project for the **Product Experimentation Certification** 
 
 ```
 finwise-strategy/
+├── index.html                         ← presentation-ready HTML pitch
 ├── README.md                          ← this dashboard + The Story
 ├── 01-bet/growth-bet.md               ← M1: growth hypothesis & bet
 ├── 02-solution/activation-solution.md ← M2: onboarding + Aha moment
