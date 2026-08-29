@@ -1,6 +1,6 @@
 # FinWise, A Product-Led Growth Strategy
 
-> _(one-line growth thesis)_
+> Personalize the first result on real data, prove value in 90 seconds, and earn Trial→Paid — not by acquiring more users, but by making the first insight theirs.
 
 **Pitch page:** [Open the HTML pitch](index.html) · [Repo](https://github.com/Raghadjuhani/finwise-strategy)
 
