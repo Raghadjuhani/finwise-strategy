@@ -11,7 +11,7 @@ _____
 
 ## Onboarding prototype
 
-https://fin-wias-v1-krpaxu8dx-ralfaydi.vercel.app
+https://fin-wias-v1.vercel.app
 
 _____
 
